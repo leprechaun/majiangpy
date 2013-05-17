@@ -1,4 +1,5 @@
 import majiang.game
+import majiang.player
 import unittest
 import pprint
 
@@ -11,16 +12,16 @@ class TestGame(unittest.TestCase):
 		g = majiang.game.Game()
 		self.assertEqual( g.player_count(), 0 )
 
-		g.add_player( "laurence" )
+		g.add_player( majiang.player.Player("laurence"))
 		self.assertEqual( g.player_count(), 1 )
 
-		g.add_player( "qianqi" )
+		g.add_player( majiang.player.Player("qianqi"))
 		self.assertEqual( g.player_count(), 2 )
 
-		g.add_player( "liangpei" )
+		g.add_player( majiang.player.Player("liangpei"))
 		self.assertEqual( g.player_count(), 3 )
 
-		g.add_player( "cute-lam" )
+		g.add_player( majiang.player.Player("cute-lam"))
 		self.assertEqual( g.player_count(), 4 )
 
 	def test_game_cannot_have_more_than_four_players(self):

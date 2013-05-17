@@ -32,9 +32,15 @@ class Wall:
 		shuffle( self._tiles )
 
 
-	def draw_tile(self):
-		if len( self._tiles ) > 0:
-			return self._tiles.pop()
+	def draw_tile(self, tile_count = 1):
+		if len( self._tiles ) >= tile_count:
+			returns = self._tiles[0:tile_count]
+			self._tiles[0:tile_count] = []
+			if len( returns ) == 1:
+				returns = returns[ 0 ]
+			return returns
+		else:
+			raise Exception("Not enough tiles, " + str(tile_count) + "/" + str(len(self._tiles)))
 
 	def tiles_left(self):
 		return len( self._tiles )

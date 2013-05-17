@@ -18,7 +18,7 @@ class Tile:
 		self._value = value
 		self._type = type
 
-	def canChao(self):
+	def can_chao(self):
 		return True
 
 class Bamboo(Tile):
@@ -40,7 +40,7 @@ class Dragon(Tile):
 		self._value = value
 		self._type = "dragon"
 
-	def canChao(self):
+	def can_chao(self):
 		return False
 
 class Number(Tile):
@@ -58,5 +58,5 @@ class Wind(Tile):
 		self._value = value
 		self._type = "wind"
 
-	def canChao(self):
+	def can_chao(self):
 		return False

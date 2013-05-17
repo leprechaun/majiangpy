@@ -38,6 +38,12 @@ class TestWall(unittest.TestCase):
 		self.series_is_complete( tiles["circle"], [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ] )
 		self.series_is_complete( tiles["bamboo"], [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ] )
 
+	def test_wall_can_draw_any_number_of_available_tiles(self):
+		w = majiang.wall.Wall()
+		self.assertEqual( len( w.draw_tile( 3 ) ), 3 )
+		self.assertEqual( len( w.draw_tile( 5 ) ), 5 )
+		self.assertEqual( len( w.draw_tile( 14 ) ), 14 )
+
 	def series_is_complete( self, series, range ):
 		for v in range:
 			self.assertEqual( len( series[ v ] ), 4 )
