@@ -1,15 +1,11 @@
-import majiang.accountant
-import majiang.player
-import majiang.tiles
 import majiang.playfinder
+import majiang.tiles
 import unittest
-import pprint
 import random
 
 
 class TestPlayFinder(unittest.TestCase):
 	def test_find_one_eyes_alone(self):
-		return
 		tiles = [
 			majiang.tiles.Dragon(1),
 			majiang.tiles.Dragon(1),
@@ -17,81 +13,13 @@ class TestPlayFinder(unittest.TestCase):
 
 		random.shuffle(tiles)
 
-		plays = [
-			majiang.plays.Eyes()
-		]
-
-		finder = majiang.playfinder.PlayFinder(plays)
+		finder = majiang.playfinder.PlayFinder()
 		finds = finder.find(tiles)
 
 		self.assertEqual(len(finds), 1)
 		self.assertIsInstance(finds[0], majiang.plays.Eyes)
-
-	def test_find_one_eyes_among_many(self):
-		return
-		tiles = [
-			majiang.tiles.Dragon(1),
-			majiang.tiles.Dragon(1),
-			majiang.tiles.Circle(1),
-			majiang.tiles.Circle(2),
-			majiang.tiles.Circle(3),
-			majiang.tiles.Circle(4),
-			majiang.tiles.Circle(5),
-			majiang.tiles.Circle(6),
-			majiang.tiles.Circle(7),
-			majiang.tiles.Circle(9),
-			majiang.tiles.Bamboo(1),
-			majiang.tiles.Bamboo(2),
-			majiang.tiles.Bamboo(3),
-		]
-
-		random.shuffle(tiles)
-
-		plays = [
-			majiang.plays.Eyes()
-		]
-
-		finder = majiang.playfinder.PlayFinder(plays)
-		finds = finder.find(tiles)
-
-		self.assertEqual(len(finds), 1)
-		self.assertIsInstance(finds[0], majiang.plays.Eyes)
-
-	def test_find_many_eyes(self):
-		tiles = [
-			majiang.tiles.Dragon(1),
-			majiang.tiles.Dragon(1),
-			majiang.tiles.Circle(1),
-			majiang.tiles.Circle(1),
-			majiang.tiles.Circle(1),
-			majiang.tiles.Circle(4),
-			majiang.tiles.Circle(5),
-			majiang.tiles.Circle(6),
-			majiang.tiles.Circle(7),
-			majiang.tiles.Circle(8),
-			majiang.tiles.Circle(9),
-			majiang.tiles.Bamboo(1),
-			majiang.tiles.Bamboo(2),
-			majiang.tiles.Bamboo(3),
-		]
-
-		random.shuffle(tiles)
-
-		plays = [
-			majiang.plays.Eyes()
-		]
-
-		finder = majiang.playfinder.PlayFinder(plays)
-		finds = finder.find(tiles)
-
-		self.assertEqual(len(finds), 3)
-		self.assertIsInstance(finds[0], majiang.plays.Eyes)
-		self.assertIsInstance(finds[1], majiang.plays.Eyes)
-		self.assertIsInstance(finds[2], majiang.plays.Eyes)
-
 
 	def test_find_one_peng_alone(self):
-		return
 		tiles = [
 			majiang.tiles.Dragon(1),
 			majiang.tiles.Dragon(1),
@@ -100,81 +28,30 @@ class TestPlayFinder(unittest.TestCase):
 
 		random.shuffle(tiles)
 
-		plays = [
-			majiang.plays.Peng()
-		]
-
-		finder = majiang.playfinder.PlayFinder(plays)
+		finder = majiang.playfinder.PlayFinder()
 		finds = finder.find(tiles)
 
 		self.assertEqual(len(finds), 1)
 		self.assertIsInstance(finds[0], majiang.plays.Peng)
 
-	def test_find_one_peng_among_many(self):
-		return
+	def test_find_one_kong_alone(self):
 		tiles = [
 			majiang.tiles.Dragon(1),
 			majiang.tiles.Dragon(1),
 			majiang.tiles.Dragon(1),
-			majiang.tiles.Circle(1),
-			majiang.tiles.Circle(2),
-			majiang.tiles.Circle(3),
-			majiang.tiles.Circle(4),
-			majiang.tiles.Circle(5),
-			majiang.tiles.Circle(6),
-			majiang.tiles.Circle(7),
-			majiang.tiles.Circle(9),
-			majiang.tiles.Bamboo(1),
-			majiang.tiles.Bamboo(2),
-			majiang.tiles.Bamboo(3),
+			majiang.tiles.Dragon(1),
 		]
 
 		random.shuffle(tiles)
 
-		plays = [
-			majiang.plays.Peng()
-		]
-
-		finder = majiang.playfinder.PlayFinder(plays)
+		finder = majiang.playfinder.PlayFinder()
 		finds = finder.find(tiles)
 
 		self.assertEqual(len(finds), 1)
-		self.assertIsInstance(finds[0], majiang.plays.Peng)
+		self.assertIsInstance(finds[0], majiang.plays.Kong)
 
-	def test_find_many_peng(self):
-		tiles = [
-			majiang.tiles.Dragon(1),
-			majiang.tiles.Dragon(1),
-			majiang.tiles.Dragon(1),
-			majiang.tiles.Circle(1),
-			majiang.tiles.Circle(1),
-			majiang.tiles.Circle(1),
-			majiang.tiles.Circle(4),
-			majiang.tiles.Circle(5),
-			majiang.tiles.Circle(6),
-			majiang.tiles.Circle(7),
-			majiang.tiles.Circle(8),
-			majiang.tiles.Circle(9),
-			majiang.tiles.Bamboo(1),
-			majiang.tiles.Bamboo(2),
-			majiang.tiles.Bamboo(3),
-		]
-
-		random.shuffle(tiles)
-
-		plays = [
-			majiang.plays.Peng()
-		]
-
-		finder = majiang.playfinder.PlayFinder(plays)
-		finds = finder.find(tiles)
-
-		self.assertEqual(len(finds), 2)
-		self.assertIsInstance(finds[0], majiang.plays.Peng)
-		self.assertIsInstance(finds[1], majiang.plays.Peng)
 
 	def test_find_one_chao_alone(self):
-		return
 		tiles = [
 			majiang.tiles.Circle(1),
 			majiang.tiles.Circle(2),
@@ -183,56 +60,55 @@ class TestPlayFinder(unittest.TestCase):
 
 		random.shuffle(tiles)
 
-		plays = [
-			majiang.plays.Chao()
-		]
-
-		finder = majiang.playfinder.PlayFinder(plays)
+		finder = majiang.playfinder.PlayFinder()
 		finds = finder.find(tiles)
 
 		self.assertEqual(len(finds), 1)
 		self.assertIsInstance(finds[0], majiang.plays.Chao)
 
-	def test_find_one_chao_among_many(self):
-		return
+	def test_find_many(self):
 		tiles = [
-			majiang.tiles.Circle(1),
+			majiang.tiles.Dragon(1),
+			majiang.tiles.Dragon(1),
+
 			majiang.tiles.Circle(2),
-			majiang.tiles.Circle(3),
-			majiang.tiles.Dragon(1),
-			majiang.tiles.Dragon(1),
-			majiang.tiles.Dragon(1),
+			majiang.tiles.Circle(2),
+			majiang.tiles.Circle(2),
+
+			majiang.tiles.Number(3),
+			majiang.tiles.Number(3),
+			majiang.tiles.Number(3),
+			majiang.tiles.Number(3),
+
 			majiang.tiles.Bamboo(1),
 			majiang.tiles.Bamboo(2),
-			majiang.tiles.Bamboo(5),
+			majiang.tiles.Bamboo(3),
+
+			majiang.tiles.Wind(1),
+			majiang.tiles.Wind(2),
+			majiang.tiles.Wind(3),
+			majiang.tiles.Wind(4),
 		]
 
 		random.shuffle(tiles)
 
-		plays = [
-			majiang.plays.Chao()
-		]
-
-		finder = majiang.playfinder.PlayFinder(plays)
+		finder = majiang.playfinder.PlayFinder()
 		finds = finder.find(tiles)
 
-		self.assertEqual(len(finds), 1)
-		self.assertIsInstance(finds[0], majiang.plays.Chao)
 
-	def test_find_many_chao(self):
+		types = [type(find) for find in finds]	
+
+		self.assertEqual(len(finds), 4)
+		self.assertEqual(types.count(majiang.plays.Eyes), 1)
+		self.assertEqual(types.count(majiang.plays.Peng), 1)
+		self.assertEqual(types.count(majiang.plays.Kong), 1)
+		self.assertEqual(types.count(majiang.plays.Chao), 1)
+
+	def test_find_two_identical_chaos(self):
 		tiles = [
-			majiang.tiles.Dragon(1),
-			majiang.tiles.Dragon(1),
-			majiang.tiles.Dragon(1),
-			majiang.tiles.Circle(1),
-			majiang.tiles.Circle(2),
-			majiang.tiles.Circle(3),
-			majiang.tiles.Circle(4),
-			majiang.tiles.Circle(5),
-			majiang.tiles.Circle(6),
-			majiang.tiles.Circle(7),
-			majiang.tiles.Circle(8),
-			majiang.tiles.Circle(9),
+			majiang.tiles.Bamboo(1),
+			majiang.tiles.Bamboo(2),
+			majiang.tiles.Bamboo(3),
 			majiang.tiles.Bamboo(1),
 			majiang.tiles.Bamboo(2),
 			majiang.tiles.Bamboo(3),
@@ -240,33 +116,82 @@ class TestPlayFinder(unittest.TestCase):
 
 		random.shuffle(tiles)
 
-		plays = [
-			majiang.plays.Chao()
-		]
-
-		finder = majiang.playfinder.PlayFinder(plays)
+		finder = majiang.playfinder.PlayFinder()
 		finds = finder.find(tiles)
 
-		self.assertEqual(len(finds), 8)
-		for i in range(0, 8):
-			self.assertIsInstance(finds[i], majiang.plays.Chao)
+		types = [type(find) for find in finds]	
 
-	def test_find_chao_with_an_eyes(self):
+		self.assertEqual(len(finds), 5)
+		self.assertEqual(types.count(majiang.plays.Chao), 2)
+		self.assertEqual(types.count(majiang.plays.Eyes), 3)
+
+	def test_find_two_offset_chaos(self):
 		tiles = [
-			majiang.tiles.Circle(1),
-			majiang.tiles.Circle(2),
-			majiang.tiles.Circle(2),
-			majiang.tiles.Circle(3),
+			majiang.tiles.Bamboo(1),
+			majiang.tiles.Bamboo(2),
+			majiang.tiles.Bamboo(3),
+			majiang.tiles.Bamboo(2),
+			majiang.tiles.Bamboo(3),
+			majiang.tiles.Bamboo(4),
 		]
 
 		random.shuffle(tiles)
 
-		plays = [
-			majiang.plays.Chao(),
-		]
-
-		finder = majiang.playfinder.PlayFinder(plays)
+		finder = majiang.playfinder.PlayFinder()
 		finds = finder.find(tiles)
 
-		self.assertEqual(len(finds), 1)
-		self.assertIsInstance(finds[i], majiang.plays.Chao)
+		types = [type(find) for find in finds]	
+
+		self.assertEqual(len(finds), 4)
+		self.assertEqual(types.count(majiang.plays.Chao), 2)
+		self.assertEqual(types.count(majiang.plays.Eyes), 2)
+
+	def test_find_an_offset_chaos_and_almost_chao(self):
+		tiles = [
+			majiang.tiles.Bamboo(1),
+			majiang.tiles.Bamboo(2),
+			majiang.tiles.Bamboo(3),
+			majiang.tiles.Bamboo(2),
+			majiang.tiles.Bamboo(3),
+		]
+
+		random.shuffle(tiles)
+
+		finder = majiang.playfinder.PlayFinder()
+		finds = finder.find(tiles)
+
+		types = [type(find) for find in finds]	
+
+		self.assertEqual(types.count(majiang.plays.Chao), 1)
+		self.assertEqual(types.count(majiang.plays.Eyes), 2)
+		self.assertEqual(types.count(majiang.plays.AlmostChao), 1)
+		self.assertEqual(len(finds), 4)
+
+	def test_dragons_dont_chao(self):
+		tiles = [
+			majiang.tiles.Dragon(1),
+			majiang.tiles.Dragon(2),
+			majiang.tiles.Dragon(3),
+		]
+
+		random.shuffle(tiles)
+
+		finder = majiang.playfinder.PlayFinder()
+		finds = finder.find(tiles)
+
+		self.assertEqual(len(finds), 0)
+
+	def test_winds_dont_chao(self):
+		tiles = [
+			majiang.tiles.Wind(1),
+			majiang.tiles.Wind(2),
+			majiang.tiles.Wind(3),
+		]
+
+		random.shuffle(tiles)
+
+		finder = majiang.playfinder.PlayFinder()
+		finds = finder.find(tiles)
+
+		self.assertEqual(len(finds), 0)
+

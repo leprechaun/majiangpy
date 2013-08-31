@@ -8,7 +8,7 @@ class Tile:
 	def get_value(self):
 		return self._value
 
-	def __init__(self,type,value):
+	def __init__(self, type, value):
 		if value < 1:
 			raise Exception
 
@@ -18,16 +18,22 @@ class Tile:
 		self._value = value
 		self._type = type
 
+	def __str__(self):
+		return self.get_type() + "-" + str(self.get_value())
+
 	def can_chao(self):
 		return True
 
+
 class Bamboo(Tile):
 	def __init__(self, value):
-		super().__init__("bamboo",value)
+		super().__init__("bamboo", value)
+
 
 class Circle(Tile):
 	def __init__(self, value):
-		super().__init__("circle",value)
+		super().__init__("circle", value)
+
 
 class Dragon(Tile):
 	def __init__(self, value):
@@ -43,9 +49,11 @@ class Dragon(Tile):
 	def can_chao(self):
 		return False
 
+
 class Number(Tile):
 	def __init__(self, value):
-		super().__init__("number",value)
+		super().__init__("number", value)
+
 
 class Wind(Tile):
 	def __init__(self, value):
