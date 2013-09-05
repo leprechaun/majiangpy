@@ -54,8 +54,62 @@ class PlayFinder(object):
                 """
                 # Chao / Wind and Dragons can't
                 if t != "wind" and t != "dragon":
+#                    print("Find chaos in", t, "starting with", v)
                     # Backup the bucket so I can fuck it up
                     bucket = buckets[t]
+
+ #                   print(bucket)
+
+                    if v in bucket:
+  #                      print(t,"has",len(bucket[v]),"x",v)
+                        for i in list(range(len(bucket[v]))):
+   #                         print( "v:", v, "i:", i)
+                            # Chao
+                            try:
+    #                            print("trying",str(v),str(v+1),str(v+2),"at",i)
+                                ttiles = [
+                                    bucket[v+0][i],
+                                    bucket[v+1][i],
+                                    bucket[v+2][i]
+                                ]
+                                plays.append(majiang.plays.Chao(ttiles))
+     #                           print("Found!")
+                            except:
+                                # AlmostChao - Sequential
+                                try:
+                                    # Shit. What do I care about. 
+                                    # Having a previous value?
+                                    # Or the same index?
+                                    # Probably the same index ...
+      #                              print("trying",str(v),str(v+1), "at",i)
+                                    if bucket[v-1][i]:
+       #                                 print("Skip!")
+                                        continue
+
+                                    ttiles = [
+                                        bucket[v+0][i],
+                                        bucket[v+1][i]
+                                    ]
+                                    plays.append(majiang.plays.AlmostChao(ttiles))
+        #                            print("Found AChaos")
+                                    continue
+                                except:
+         #                           print("Got exception")
+                                    True
+
+                                # AlmostChao - Non-Sequential
+                                try:
+                                    ttiles = [
+                                        bucket[v+0][i],
+                                        bucket[v+2][i]
+                                    ]
+                                    plays.append(majiang.plays.AlmostChao(ttiles))
+                                    continue
+                                except:
+                                    True
+
+
+                    '''
                     if v in buckets[t] and v+1 in buckets[t] and v+2 in buckets[t]:
                         chao_count = min([
                             len(buckets[t][v]),
@@ -88,6 +142,7 @@ class PlayFinder(object):
                     elif v in buckets[t] and v+2 in buckets[t] and v+1 not in buckets[t]:
                         # I'll need to do something here ...
                         True
+                    '''
 
         return plays
 

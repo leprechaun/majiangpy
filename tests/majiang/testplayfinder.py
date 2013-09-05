@@ -194,4 +194,3 @@ class TestPlayFinder(unittest.TestCase):
         finds = finder.find(tiles)
 
         self.assertEqual(len(finds), 0)
-
