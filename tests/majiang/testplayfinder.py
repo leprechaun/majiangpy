@@ -50,7 +50,6 @@ class TestPlayFinder(unittest.TestCase):
         self.assertEqual(len(finds), 1)
         self.assertIsInstance(finds[0], majiang.plays.Kong)
 
-
     def test_find_one_chao_alone(self):
         tiles = [
             majiang.tiles.Circle(1),
@@ -95,8 +94,7 @@ class TestPlayFinder(unittest.TestCase):
         finder = majiang.playfinder.PlayFinder()
         finds = finder.find(tiles)
 
-
-        types = [type(find) for find in finds]    
+        types = [type(find) for find in finds]
 
         self.assertEqual(len(finds), 4)
         self.assertEqual(types.count(majiang.plays.Eyes), 1)
@@ -119,7 +117,7 @@ class TestPlayFinder(unittest.TestCase):
         finder = majiang.playfinder.PlayFinder()
         finds = finder.find(tiles)
 
-        types = [type(find) for find in finds]    
+        types = [type(find) for find in finds]
 
         self.assertEqual(len(finds), 5)
         self.assertEqual(types.count(majiang.plays.Chao), 2)

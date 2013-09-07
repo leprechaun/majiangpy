@@ -14,7 +14,7 @@ class Game:
         else:
             self._players = []
 
-        if not type(wall) == None:
+        if not type(wall) is None:
             self._wall = wall
 
         if not type(accountant) == majiang.accountant.Accountant:
@@ -66,18 +66,18 @@ class Game:
         discard = player.intake_draw(tile)
 
         play = self._offer_discard_to_other_players(discard)
-        if play != None:
+        if play is not None:
             pass
 
         self._inc_player()
-
 
     def _offer_discard_to_other_players(self, discard_tile):
         # E, S, W, N
         order = [0, 1, 2, 3]
 
         # Lets not bother offering a tile to the player who discards it
-        # first returns current turn player instance, second returns its index
+        # first returns current turn player instance
+        # second returns its index
         order.remove(self._get_player(self._get_player()))
 
         # Just to make thigs a little more fair
@@ -134,7 +134,7 @@ class Game:
     # Method to return players or get their index
     def _get_player(self, ref=None):
         # Current player requested
-        if ref == None:
+        if ref is None:
             return self._players[self._current_turn_player_index]
 
         # If giving an index, return the player object
@@ -152,7 +152,7 @@ class Game:
         return False
 
     def log(self, text):
-        print( text )
+        print(text)
 '''
 add players
 init wall

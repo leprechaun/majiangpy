@@ -17,8 +17,8 @@ class Player:
         s = [(t.get_type() + "-" + str(t.get_value())) for t in self._tiles]
         s = ",".join(s)
         print(self.get_name(), ": has ", s)
-        print( self.get_name(), ": got ", tile )
-        print( self.get_name(), ": discarded ", tile )
+        print(self.get_name(), ": got ", tile)
+        print(self.get_name(), ": discarded ", tile)
         return tile
 
     def intake_discard(self, tile):
@@ -31,6 +31,6 @@ class Player:
         self._tiles = self._sort_tiles(self._tiles)
 
     def _sort_tiles(self, tiles):
-        d = [(tile.get_type(), tile.get_value(), i, tile) for i, tile in enumerate(tiles)]    
+        d = [(tile.get_type(), tile.get_value(), i, tile) for i, tile in enumerate(tiles)]
         d.sort()
         return [tile for t, v, i, tile in d]

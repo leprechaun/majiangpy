@@ -1,6 +1,6 @@
 class Play(object):
     def __init__(self, tiles=None):
-        if not tiles == None:
+        if not tiles is None:
             self._tiles = tiles
 
     def get_tiles(self):
@@ -89,9 +89,11 @@ class Chao(Play):
 
         return True
 
+
 class AlmostChao(Play):
     def tile_count(self):
         return 2
+
 
 class Kong(Play):
     def tile_count(self):

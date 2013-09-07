@@ -5,7 +5,7 @@ class PlayFinder(object):
     def __init__(self, plays=[]):
         self._plays = plays
 
-    def bucket_tiles(self,tiles):
+    def bucket_tiles(self, tiles):
         tiles = self.sort_tiles(tiles)
 
         buckets = {}
@@ -30,11 +30,13 @@ class PlayFinder(object):
                 if not v in buckets[t]:
                     continue
 
-                # Kong / Should I also return a Peng? Perhaps I need a PlaySet class
+                # Kong / Should I also return a Peng?
+                # Perhaps I need a PlaySet class
                 if len(buckets[t][v]) == 4:
                     plays.append(majiang.plays.Kong(buckets[t][v]))
 
-                # Peng / Should I also return a Eyes? Perhaps I need a PlaySet class ...
+                # Peng / Should I also return a Eyes?
+                # Perhaps I need a PlaySet class ...
                 if len(buckets[t][v]) == 3:
                     plays.append(majiang.plays.Peng(buckets[t][v]))
 
@@ -47,8 +49,8 @@ class PlayFinder(object):
                 """
                 What I need done here is ... identify chaos
 
-                Loop through possible values, and see when I have [v, v+1, v+2]
-                But I also have AlmostChaos, that's when I see [v, v+1] or [v, v+2]
+                Loop through possible values, see when I have [v, v+1, v+2]
+                But I also have AlmostChaos, when I see [v, v+1] or [v, v+2]
 
                 The difficulty lies in identifying more than one ... why?
                 """
@@ -77,7 +79,7 @@ class PlayFinder(object):
                             except:
                                 # AlmostChao - Sequential
                                 try:
-                                    # Shit. What do I care about. 
+                                    # Shit. What do I care about.
                                     # Having a previous value?
                                     # Or the same index?
                                     # Probably the same index ...
@@ -107,7 +109,6 @@ class PlayFinder(object):
                                     continue
                                 except:
                                     True
-
 
                     '''
                     if v in buckets[t] and v+1 in buckets[t] and v+2 in buckets[t]:
@@ -162,6 +163,6 @@ class PlayFinder(object):
         return found_plays
 
     def sort_tiles(self, tiles):
-        d = [(tile.get_type(), tile.get_value(), i, tile) for i, tile in enumerate(tiles)]    
+        d = [(tile.get_type(), tile.get_value(), i, tile) for i, tile in enumerate(tiles)]
         d.sort()
         return [tile for t, v, i, tile in d]
