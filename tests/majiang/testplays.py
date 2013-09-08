@@ -258,5 +258,74 @@ class TestChao(unittest.TestCase):
         self.assertEqual(chao.match(p), False)
 
 
+class TestSequence(unittest.TestCase):
+    def test_match(self):
+        p = []
+        p.append(majiang.tiles.Bamboo(1))
+        p.append(majiang.tiles.Bamboo(2))
+
+        sequence = majiang.plays.Sequence(p)
+        self.assertEqual(sequence.match(p), True)
+
+    def test_non_match_type(self):
+        p = []
+        p.append(majiang.tiles.Bamboo(1))
+        p.append(majiang.tiles.Bamboo(2))
+        p.append(majiang.tiles.Circle(3))
+
+        sequence = majiang.plays.Sequence(p)
+        self.assertEqual(sequence.match(p), False)
+
+    def test_non_match_values(self):
+        p = []
+        p.append(majiang.tiles.Bamboo(1))
+        p.append(majiang.tiles.Bamboo(2))
+        p.append(majiang.tiles.Bamboo(4))
+
+        sequence = majiang.plays.Sequence(p)
+        self.assertEqual(sequence.match(p), False)
+
+    def test_tile_count_0(self):
+        p = []
+        p.append(majiang.tiles.Bamboo(1))
+
+        sequence = majiang.plays.Sequence(p)
+        self.assertEqual(sequence.match(p), False)
+
+    def test_tile_count_1(self):
+        p = []
+        p.append(majiang.tiles.Bamboo(1))
+        p.append(majiang.tiles.Bamboo(2))
+        p.append(majiang.tiles.Bamboo(3))
+
+        sequence = majiang.plays.Sequence(p)
+        self.assertEqual(sequence.match(p), True)
+
+        self.assertEqual(sequence.tile_count(), 3)
+
+    def test_tile_count_2(self):
+        p = []
+        p.append(majiang.tiles.Bamboo(1))
+        p.append(majiang.tiles.Bamboo(2))
+        p.append(majiang.tiles.Bamboo(3))
+        p.append(majiang.tiles.Bamboo(4))
+
+        sequence = majiang.plays.Sequence(p)
+        self.assertEqual(sequence.match(p), True)
+
+        self.assertEqual(sequence.tile_count(), 4)
+
+    def test_tile_min_max(self):
+        p = []
+        p.append(majiang.tiles.Bamboo(1))
+        p.append(majiang.tiles.Bamboo(2))
+        p.append(majiang.tiles.Bamboo(3))
+        p.append(majiang.tiles.Bamboo(4))
+
+        sequence = majiang.plays.Sequence(p)
+        self.assertEqual(sequence.min(), 1)
+        self.assertEqual(sequence.max(), 4)
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -1,6 +1,6 @@
 class Play(object):
     def __init__(self, tiles=None):
-        if not tiles is None:
+        if tiles is not None:
             self._tiles = tiles
 
     def get_tiles(self):
@@ -90,9 +90,29 @@ class Chao(Play):
         return True
 
 
-class AlmostChao(Play):
+class Sequence(Play):
     def tile_count(self):
-        return 2
+        return len(self._tiles)
+
+    def match(self, tiles):
+        if len(tiles) < 2:
+            return False
+
+        if not self.types_are_equal(tiles):
+            return False
+
+        if not self.values_are_sequential(tiles):
+            return False
+
+        return True
+
+    def min(self):
+        d = [tile.get_value() for i, tile in enumerate(self._tiles)]
+        return min(d)
+
+    def max(self):
+        d = [tile.get_value() for i, tile in enumerate(self._tiles)]
+        return max(d)
 
 
 class Kong(Play):
