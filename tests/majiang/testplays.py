@@ -375,6 +375,9 @@ class TestSequence(unittest.TestCase):
         p.append(majiang.tiles.Bamboo(4))
 
         sequence = majiang.plays.Sequence(p)
+
+        # Making sets before comparison because ordering isn't garanteed
+        # leading to intermittently failing tests
         self.assertEqual(set(sequence.contains([p[0], p[1]])), set([p[0], p[1]]))
 
     def test_play_contains_no_match(self):
