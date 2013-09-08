@@ -28,7 +28,7 @@ class TestIntersector(unittest.TestCase):
         intersections = intersect.intersect(plays)
 
         self.assertEqual(len(intersections), 1)
-        self.assertEqual(intersections[0], (plays[0],plays[1], [g[2]]))
+        self.assertEqual(intersections[0], (plays[0], plays[1], [g[2]]))
 
     def test_intersect_with_extra(self):
         g = [
@@ -58,12 +58,11 @@ class TestIntersector(unittest.TestCase):
             ])
         )
 
-
         intersect = majiang.intersector.Intersector()
         intersections = intersect.intersect(plays)
 
         self.assertEqual(len(intersections), 1)
-        self.assertEqual(intersections[0], (plays[0],plays[1], [g[2]]))
+        self.assertEqual(intersections[0], (plays[0], plays[1], [g[2]]))
 
     def test_intersect_without(self):
         g = [

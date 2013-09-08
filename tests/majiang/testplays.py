@@ -58,7 +58,6 @@ class TestPlays(unittest.TestCase):
         self.assertRaises(Exception, majiang.plays.Sequence, (p))
 
 
-
 class TestEyes(unittest.TestCase):
     def test_eyes_match(self):
         p = []

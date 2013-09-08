@@ -234,7 +234,6 @@ class TestPlayFinder(unittest.TestCase):
         self.assertEqual(type(finds[0]), majiang.plays.Eyes)
         self.assertEqual(type(finds[1]), majiang.plays.Eyes)
 
-
         self.assertEqual(type(finds[2]), majiang.plays.Sequence)
         self.assertEqual(finds[2].tile_count(), 4)
         self.assertEqual(finds[2].min(), 1)
