@@ -45,10 +45,24 @@ class TestPlays(unittest.TestCase):
         self.assertEqual(play.values_are_sequential(t), False)
 
     def test_play_same_types_pass(self):
-        pass
+        t = [
+            majiang.tiles.Dragon(1),
+            majiang.tiles.Dragon(2),
+            majiang.tiles.Dragon(2)
+        ]
+
+        play = majiang.plays.Play()
+        self.assertEqual(play.types_are_equal(t), True)
 
     def test_play_same_types_fail(self):
-        pass
+        t = [
+            majiang.tiles.Dragon(1),
+            majiang.tiles.Dragon(2),
+            majiang.tiles.Bamboo(2)
+        ]
+
+        play = majiang.plays.Play()
+        self.assertEqual(play.types_are_equal(t), False)
 
     def test_plays_constructor_detects_mismatches(self):
         p = []
