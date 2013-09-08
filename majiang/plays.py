@@ -1,7 +1,10 @@
 class Play(object):
     def __init__(self, tiles=None):
         if tiles is not None:
-            self._tiles = tiles
+            if self.match(tiles):
+                self._tiles = tiles
+            else:
+                raise Exception("Play:__init__:mismatch")
 
     def get_tiles(self):
         return self._tiles
@@ -46,6 +49,10 @@ class Play(object):
         tile_set_2 = set(tiles)
 
         return list(tile_set_1.intersection(tile_set_2))
+
+    def get_type(self):
+        # This only works because a play is *ALWAYS* of the same type
+        return self._tiles[0].get_type()
 
 
 class Eyes(Play):

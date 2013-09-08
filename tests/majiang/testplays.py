@@ -50,6 +50,14 @@ class TestPlays(unittest.TestCase):
     def test_play_same_types_fail(self):
         pass
 
+    def test_plays_constructor_detects_mismatches(self):
+        p = []
+        p.append(majiang.tiles.Bamboo(1))
+        p.append(majiang.tiles.Circle(2))
+
+        self.assertRaises(Exception, majiang.plays.Sequence, (p))
+
+
 
 class TestEyes(unittest.TestCase):
     def test_eyes_match(self):
@@ -273,7 +281,7 @@ class TestSequence(unittest.TestCase):
         p.append(majiang.tiles.Bamboo(2))
         p.append(majiang.tiles.Circle(3))
 
-        sequence = majiang.plays.Sequence(p)
+        sequence = majiang.plays.Sequence()
         self.assertEqual(sequence.match(p), False)
 
     def test_non_match_values(self):
@@ -282,14 +290,14 @@ class TestSequence(unittest.TestCase):
         p.append(majiang.tiles.Bamboo(2))
         p.append(majiang.tiles.Bamboo(4))
 
-        sequence = majiang.plays.Sequence(p)
+        sequence = majiang.plays.Sequence()
         self.assertEqual(sequence.match(p), False)
 
     def test_tile_count_0(self):
         p = []
         p.append(majiang.tiles.Bamboo(1))
 
-        sequence = majiang.plays.Sequence(p)
+        sequence = majiang.plays.Sequence()
         self.assertEqual(sequence.match(p), False)
 
     def test_tile_count_1(self):
@@ -365,6 +373,14 @@ class TestSequence(unittest.TestCase):
 
         sequence = majiang.plays.Sequence(p)
         self.assertEqual(sequence.contains(majiang.tiles.Bamboo(1)), [])
+
+    def test_plays_returns_its_type(self):
+        p = []
+        p.append(majiang.tiles.Bamboo(1))
+        p.append(majiang.tiles.Bamboo(2))
+
+        sequence = majiang.plays.Sequence(p)
+        self.assertEqual(sequence.get_type(), "bamboo")
 
 
 if __name__ == "__main__":
