@@ -38,6 +38,15 @@ class Play(object):
 
         return False
 
+    def contains(self, tiles):
+        if type(tiles) is not list:
+            tiles = [tiles]
+
+        tile_set_1 = set(self._tiles)
+        tile_set_2 = set(tiles)
+
+        return list(tile_set_1.intersection(tile_set_2))
+
 
 class Eyes(Play):
     def tile_count(self):

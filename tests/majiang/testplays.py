@@ -326,6 +326,46 @@ class TestSequence(unittest.TestCase):
         self.assertEqual(sequence.min(), 1)
         self.assertEqual(sequence.max(), 4)
 
+    def test_play_contains_single_tile(self):
+        p = []
+        p.append(majiang.tiles.Bamboo(1))
+        p.append(majiang.tiles.Bamboo(2))
+        p.append(majiang.tiles.Bamboo(3))
+        p.append(majiang.tiles.Bamboo(4))
+
+        sequence = majiang.plays.Sequence(p)
+        self.assertEqual(sequence.contains(p[0]), [p[0]])
+
+    def test_play_contains_single_array(self):
+        p = []
+        p.append(majiang.tiles.Bamboo(1))
+        p.append(majiang.tiles.Bamboo(2))
+        p.append(majiang.tiles.Bamboo(3))
+        p.append(majiang.tiles.Bamboo(4))
+
+        sequence = majiang.plays.Sequence(p)
+        self.assertEqual(sequence.contains([p[0]]), [p[0]])
+
+    def test_play_contains_multiple_array(self):
+        p = []
+        p.append(majiang.tiles.Bamboo(1))
+        p.append(majiang.tiles.Bamboo(2))
+        p.append(majiang.tiles.Bamboo(3))
+        p.append(majiang.tiles.Bamboo(4))
+
+        sequence = majiang.plays.Sequence(p)
+        self.assertEqual(set(sequence.contains([p[0], p[1]])), set([p[0], p[1]]))
+
+    def test_play_contains_no_match(self):
+        p = []
+        p.append(majiang.tiles.Bamboo(1))
+        p.append(majiang.tiles.Bamboo(2))
+        p.append(majiang.tiles.Bamboo(3))
+        p.append(majiang.tiles.Bamboo(4))
+
+        sequence = majiang.plays.Sequence(p)
+        self.assertEqual(sequence.contains(majiang.tiles.Bamboo(1)), [])
+
 
 if __name__ == "__main__":
     unittest.main()
