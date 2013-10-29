@@ -44,6 +44,11 @@ class TestWall(unittest.TestCase):
         self.assertEqual(len(w.draw_tile(5)), 5)
         self.assertEqual(len(w.draw_tile(14)), 14)
 
+    def test_wall_raise_exception_when_empty_draw(self):
+        w = majiang.wall.Wall()
+        w.draw_tile(w.tiles_left()-1)
+        self.assertRaises(Exception, w.draw_tile,(2))
+
     def series_is_complete(self, series, range):
         for v in range:
             self.assertEqual(len(series[v]), 4)

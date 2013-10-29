@@ -60,7 +60,7 @@ class Wind(Tile):
         if value < 1:
             raise Exception("value too small")
 
-        if value > 5:
+        if value > 4:
             raise Exception("value too big")
 
         self._value = value

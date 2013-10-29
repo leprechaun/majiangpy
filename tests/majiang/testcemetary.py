@@ -31,6 +31,15 @@ class TestCemetary(unittest.TestCase):
         for t in bamboos:
             self.assertIsInstance(t, majiang.tiles.Bamboo)
 
+    def test_cemetary_returns_proper_tile_count(self):
+        c = majiang.cemetary.Cemetary()
+        for v in range(1, 5):
+            c.discard(majiang.tiles.Bamboo(v))
+            c.discard(majiang.tiles.Number(v))
+            c.discard(majiang.tiles.Circle(v))
+
+        self.assertEqual(c.get_tile_count(), 12)
+
     def test_cemetary_filters_on_type_and_value(self):
         c = majiang.cemetary.Cemetary()
         for v in range(1, 5):

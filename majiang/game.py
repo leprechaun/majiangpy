@@ -56,20 +56,51 @@ class Game:
         self._enter_game_loop()
 
     def _enter_game_loop(self):
+        turn_count = 0
         while not self._game_won() and self._wall.tiles_left() > 0:
+            print("turn", turn_count, "tiles:", self._wall.tiles_left())
+            turn_count = turn_count + 1
             player = self._get_player()
             self._take_turn(player)
 
     def _take_turn(self, player):
         tile = self._wall.draw_tile()
 
-        discard = player.intake_draw(tile)
+        # inform the accountant
+        self._accountant.add_tile(player, tile)
 
-        play = self._offer_discard_to_other_players(discard)
-        if play is not None:
+        # offer the tile, accept a discard/play tuple (in the case of Gangs)
+        # unpack it, if that's the case
+        discard_play_tuple = player.intake_draw(tile)
+
+        if type(discard_play_tuple) == tuple:
+            discard = discard_play_tuple[0]
+            play = discard_play_tuple[1]
+
+        elif isinstance(discard_play_tuple, majiang.tiles.Tile):
+            discard = discard_play_tuple
+            play = None
+
+        else:
+            # WTF JUST HAPPENED?
             pass
 
+        # Ensure proper tile ownership and handle scoring
+        if play is not None:
+            if not self._accountant.has_tiles(play.get_tiles()):
+                raise Exception("Player tried to play on unowned tiles")
+            else:
+                # Deal with scoring here
+                pass
+
+        if not self._accountant.has_tile(player, discard):
+            # player possibly cheated
+            raise Exception("Player discarded unowned tile:" + str(tile))
+        else:
+            tile_play_tuple = self._offer_discard_to_other_players(discard)
+
         self._inc_player()
+
 
     def _offer_discard_to_other_players(self, discard_tile):
         # E, S, W, N
@@ -156,16 +187,19 @@ class Game:
 '''
 add players
 init wall
+shuffle players
 assign tiles
 
-1 - get turn player index
-2 - offer player i tile
-3 - accept player i discard
-4 - offer player i discard to others
-5 - if accept and valid play
-5.a - accept player j discard
-5.b - i = j
-6 - i++ & goto 1
+loop: while !game_won && wall.tile_count() > 0
+
+    1 - get turn player index
+    2 - offer player p1 tile
+    3 - accept player p1 discard
+    4 - offer player p1's discard to others
+    5 - if accept and valid play
+    5.a - accept player j discard
+    5.b - i = j
+    6 - i++ & goto 1
 
 def offer_discard( player, tile ):
     for p in randomized_players:

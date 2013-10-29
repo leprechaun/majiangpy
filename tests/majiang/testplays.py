@@ -4,6 +4,12 @@ import unittest
 
 
 class TestPlays(unittest.TestCase):
+    def test_plays_all_return_proper_tile_count(self):
+        self.assertEqual(majiang.plays.Eyes().tile_count(), 2)
+        self.assertEqual(majiang.plays.Peng().tile_count(), 3)
+        self.assertEqual(majiang.plays.Chao().tile_count(), 3)
+        self.assertEqual(majiang.plays.Kong().tile_count(), 4)
+
     def test_play_same_values_pass(self):
         t = [
             majiang.tiles.Dragon(1),
