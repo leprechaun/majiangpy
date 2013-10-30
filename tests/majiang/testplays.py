@@ -429,6 +429,20 @@ class TestMajiang(unittest.TestCase):
         mj = majiang.plays.Majiang()
         self.assertEqual(False, mj.match(plays))
 
+    def test_reused_tiles(self):
+        plays = []
+        tiles = [majiang.tiles.Bamboo(1) for i in range(3)]
+        plays.append(majiang.plays.Peng(tiles))
+        plays.append(majiang.plays.Peng(tiles))
+        plays.append(majiang.plays.Peng([majiang.tiles.Circle(1) for i in range(3)]))
+        plays.append(majiang.plays.Peng([majiang.tiles.Circle(3) for i in range(3)]))
+        plays.append(majiang.plays.Peng([majiang.tiles.Number(1) for i in range(3)]))
+        plays.append(majiang.plays.Peng([majiang.tiles.Number(3) for i in range(3)]))
+
+        mj = majiang.plays.Majiang()
+        self.assertEqual(False, mj.match(plays))
+
+
     def test_must_include_one_eyes(self):
         plays = []
 
