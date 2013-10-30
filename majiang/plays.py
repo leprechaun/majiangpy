@@ -150,13 +150,30 @@ class Kong(Play):
 
 class Majiang(Play):
     def match(self, plays):
-        tile_count = 0
-        for p in plays:
-            tile_count = tile_count + len(p.get_tiles())
+        tiles = []
+        [tiles.extend(p.get_tiles()) for p in plays]
 
-        # expect 4 pengs/chaos and a pair
-        if tile_count == 14:
-            return True
-        # expect 3 pengs/chaos, a kong and a pair
-        elif tile_count == 15:
-            return True
+        # Can't use a tile more than once
+        unique = list(set(tiles))
+        if len(unique) != len(tiles):
+            return False
+
+        # No Majiang can have more than 15 tiles
+        if len(tiles) > 15:
+            return False
+
+        # No Majiang can have less than 14 tiles
+        if len(tiles) < 14:
+            return False
+
+        types = [type(p) for p in plays]
+
+        # All Majiangs must include one pair
+        if types.count(Eyes) != 1:
+            return False
+
+        # All majiangs must include 4 sets
+        if (types.count(Peng) + types.count(Chao) + types.count(Kong)) != 4:
+            return False
+
+        return True

@@ -404,6 +404,54 @@ class TestSequence(unittest.TestCase):
         sequence = majiang.plays.Sequence(p)
         self.assertEqual(sequence.get_type(), "bamboo")
 
+class TestMajiang(unittest.TestCase):
+    def test_too_few_tiles(self):
+        plays = []
+
+        plays.append(majiang.plays.Peng([majiang.tiles.Bamboo(1) for i in range(3)]))
+        plays.append(majiang.plays.Peng([majiang.tiles.Bamboo(3) for i in range(3)]))
+        plays.append(majiang.plays.Peng([majiang.tiles.Circle(1) for i in range(3)]))
+        plays.append(majiang.plays.Peng([majiang.tiles.Circle(3) for i in range(3)]))
+
+        mj = majiang.plays.Majiang()
+        self.assertEqual(False, mj.match(plays))
+
+    def test_too_many_tiles(self):
+        plays = []
+
+        plays.append(majiang.plays.Peng([majiang.tiles.Bamboo(1) for i in range(3)]))
+        plays.append(majiang.plays.Peng([majiang.tiles.Bamboo(3) for i in range(3)]))
+        plays.append(majiang.plays.Peng([majiang.tiles.Circle(1) for i in range(3)]))
+        plays.append(majiang.plays.Peng([majiang.tiles.Circle(3) for i in range(3)]))
+        plays.append(majiang.plays.Peng([majiang.tiles.Number(1) for i in range(3)]))
+        plays.append(majiang.plays.Peng([majiang.tiles.Number(3) for i in range(3)]))
+
+        mj = majiang.plays.Majiang()
+        self.assertEqual(False, mj.match(plays))
+
+    def test_must_include_one_eyes(self):
+        plays = []
+
+        plays.append(majiang.plays.Peng([majiang.tiles.Bamboo(1) for i in range(3)]))
+        plays.append(majiang.plays.Peng([majiang.tiles.Bamboo(1) for i in range(3)]))
+        plays.append(majiang.plays.Peng([majiang.tiles.Circle(1) for i in range(3)]))
+        plays.append(majiang.plays.Peng([majiang.tiles.Circle(3) for i in range(3)]))
+        plays.append(majiang.plays.Peng([majiang.tiles.Number(1) for i in range(3)]))
+
+        mj = majiang.plays.Majiang()
+        self.assertEqual(False, mj.match(plays))
+
+    def test_proper_majiang(self):
+        plays = []
+
+        plays.append(majiang.plays.Peng([majiang.tiles.Bamboo(1) for i in range(3)]))
+        plays.append(majiang.plays.Peng([majiang.tiles.Bamboo(1) for i in range(3)]))
+        plays.append(majiang.plays.Peng([majiang.tiles.Circle(1) for i in range(3)]))
+        plays.append(majiang.plays.Peng([majiang.tiles.Circle(3) for i in range(3)]))
+        plays.append(majiang.plays.Eyes([majiang.tiles.Number(1) for i in range(2)]))
+
+        mj = majiang.plays.Majiang()
+        self.assertEqual(True, mj.match(plays))
 
 if __name__ == "__main__":
     unittest.main()

@@ -1,2 +1,3 @@
 #!/bin/sh
-python3 -m unittest discover
+coverage3 run --omit=tests/* -m unittest discover
+coverage3 html
