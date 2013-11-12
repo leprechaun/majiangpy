@@ -3,4 +3,4 @@ python:
   - "3.3"
   - "pypy"
 script:
-  - run-tests-ci
+  - ./run-tests-ci
